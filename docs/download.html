@@ -23,6 +23,21 @@
         font-size: 2rem;
     }
 
+    nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
+
     .container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -75,14 +90,15 @@
     <h1>Modpack Selection</h1>
 </header>
 
- <nav>
-        <a href="/MossyPacksModpacks/index.html">Home</a>
-        <a href="setup.html">Setup Guide</a>
-        <a href="configuration.html">Configuration</a>
-        <a href="performance-tips.html">Performance Tips</a>
-        <a href="download.html">Download</a>
-    </nav>
-    
+<!-- Navigation -->
+<nav>
+    <a href="/MossyPacksModpacks/index.html">Home</a>
+    <a href="setup.html">Setup Guide</a>
+    <a href="configuration.html">Configuration</a>
+    <a href="performance-tips.html">Performance Tips</a>
+    <a href="download.html">Download</a>
+</nav>
+
 <div class="container">
     <div class="card">
         <h2>Performa Modpack</h2>
@@ -92,7 +108,7 @@
 
     <div class="card">
         <h2>FeatherLite</h2>
-        <p>A lightweight performance modpack to boost your fps and over all performance enhancing!</p>
+        <p>A lightweight performance modpack to boost your fps and overall performance!</p>
         <a href="download-featherlite.html" class="button">Download</a>
     </div>
 
@@ -102,19 +118,19 @@
         <a href="download-craftdeck.html" class="button">Download</a>
     </div>
 
-<div class="card">
+    <div class="card">
         <h2>ROG Ally Modpack</h2>
         <p>A simple modpack that improves overall performance and enables controller support for the Asus ROG Ally!</p>
         <a href="download-craftdeck.html" class="button">Download</a>
     </div>
 
-<div class="card">
+    <div class="card">
         <h2>Nexus Client</h2>
         <p>This modpack offers an enhanced, optimized, and immersive Vanilla Minecraft experience!</p>
         <a href="download-craftdeck.html" class="button">Download</a>
     </div>
 
-<div class="card">
+    <div class="card">
         <h2>Eternal Trail a Soulslike</h2>
         <p>My first soulslike RPG Modpack that brings many overhauls and a new difficulty system!</p>
         <a href="download-craftdeck.html" class="button">Download</a>
@@ -125,8 +141,6 @@
         <p>Project M.Nation is a zombie survival modpack for Minecraft 1.20.1, focused on immersion, performance, and intense gameplay!</p>
         <a href="download-craftdeck.html" class="button">Download</a>
     </div>
-
-
 </div>
 
 </body>
