@@ -1,7 +1,6 @@
-# 🌿 MossyPacks Modpacks – Auswahlseite
+# 🌿 MossyPacks modpacks selection page
 
-Dies ist die **Modpack-Auswahlseite** für das MossyPacks-Projekt.  
-Besucher können hier verschiedene Minecraft-Modpacks entdecken und über die jeweilige Detailseite herunterladen.
+This is the **Modpack selection page** for the MossyPacks project.  
+Visitors can discover various Minecraft modpacks here and download them via the respective detail page.
 
-![MossyPacks Modpacks Vorschau](assets/screenshot.png)  
-
+MossyPacks Modpacks Preview](assets/screenshot.png)
