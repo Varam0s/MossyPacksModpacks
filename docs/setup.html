@@ -6,172 +6,156 @@
 <title>Setup Guide – Performa Modpack</title>
 
 <style>
-/* =====================
-   RESET & VARIABLES
-===================== */
+/* ---------- RESET ---------- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* ---------- VARIABLES ---------- */
 :root {
-    --bg: #f5f7fa;
-    --bg-dark: #0f1115;
-    --card: #ffffff;
-    --card-dark: #161a22;
-    --text: #1a1a1a;
-    --text-dark: #eaeaea;
-    --accent: #4cc2ff;
-    --accent-strong: #1f883d;
-    --border-radius: 14px;
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
 }
 
-/* =====================
-   BASE
-===================== */
+/* ---------- BODY ---------- */
 body {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: var(--bg);
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
     color: var(--text);
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background: var(--bg-dark);
-        color: var(--text-dark);
-    }
-}
-
-/* =====================
-   HEADER
-===================== */
+/* ---------- HEADER ---------- */
 header {
-    padding: 3rem 1rem 2rem;
+    padding: 2.5rem 1rem 1.5rem;
     text-align: center;
-    background: linear-gradient(135deg, #1f2933, #111827);
-    color: white;
 }
 
 header h1 {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
-header p {
-    margin-top: 0.5rem;
-    opacity: 0.85;
-}
-
-/* =====================
-   NAVIGATION
-===================== */
+/* ---------- NAV ---------- */
 nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: #111827;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 nav a {
-    color: #e5e7eb;
+    color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    padding: 0.4rem 0.7rem;
-    border-radius: 8px;
-    transition: background 0.25s, color 0.25s;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
 }
 
-nav a:hover {
-    background: rgba(255,255,255,0.1);
-    color: white;
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
 }
 
-/* =====================
-   MAIN CONTENT
-===================== */
-main {
-    max-width: 1000px;
-    margin: -2rem auto 4rem;
-    padding: 1rem;
+nav a:hover::after {
+    width: 100%;
 }
 
-/* =====================
-   CARDS
-===================== */
+/* ---------- CONTENT WRAPPER ---------- */
+#content {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
 .card {
-    background: var(--card);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: var(--shadow);
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-2px);
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+h1 {
+    text-align: center;
     margin-bottom: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    .card {
-        background: var(--card-dark);
-    }
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+p {
+    color: var(--muted);
 }
 
-.card h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.card p {
-    margin-bottom: 1rem;
-}
-
-/* =====================
-   LISTS
-===================== */
-ol, ul {
-    padding-left: 1.2rem;
+ol {
+    padding-left: 1.3rem;
 }
 
 li {
     margin-bottom: 0.6rem;
+    color: var(--muted);
 }
 
-/* =====================
-   BUTTON / LINK
-===================== */
-.button {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.7rem 1.2rem;
-    background: var(--accent-strong);
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+a {
+    color: var(--accent);
 }
 
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+a:hover {
+    color: var(--accent-strong);
 }
 
-/* =====================
-   MOBILE
-===================== */
+/* ---------- HR ---------- */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+    margin: 2rem 0;
+}
+
+/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
-    main {
-        margin-top: -1.5rem;
+    header {
+        padding-top: 2rem;
     }
 
     .card {
-        padding: 1.5rem;
+        padding: 1.4rem;
     }
 }
 </style>
@@ -181,51 +165,39 @@ li {
 
 <header>
     <h1>Setup Guide</h1>
-    <p>Quick & easy installation for the Performa Modpack</p>
 </header>
 
 <nav>
     <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup</a>
+    <a href="setup.html">Setup Guide</a>
     <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance</a>
+    <a href="performance-tips.html">Performance Tips</a>
     <a href="download.html">Download</a>
 </nav>
 
-<main>
+<div id="content">
 
-    <section class="card">
-        <h2>🔽 Download the Modpack</h2>
+    <h1>Installation</h1>
+
+    <div class="card">
+        <h2>🔽 Download the Modpacks</h2>
         <p>
-            You can download the latest version of the modpack directly from
-            <strong>Modrinth</strong>.
+            The modpacks can be downloaded from
+            <strong><a href="https://modrinth.com/user/Varamos">Modrinth</a></strong>.
         </p>
-        <a class="button" href="https://modrinth.com/user/Varamos">
-            Open Modrinth
-        </a>
-    </section>
+    </div>
 
-    <section class="card">
-        <h2>🛠 Installation</h2>
-
-        <h3>Supported Launchers</h3>
-        <ul>
-            <li>Prism Launcher</li>
-            <li>MultiMC</li>
-            <li>Modrinth App</li>
-            <li>GDLauncher</li>
-        </ul>
-
-        <h3>Steps</h3>
+    <div class="card">
+        <h2>🛠 Installing the Modpack</h2>
         <ol>
             <li>Download the <code>.mrpack</code> file</li>
-            <li>Open your launcher</li>
-            <li>Select <strong>“Import from MRPack/File”</strong></li>
-            <li>Choose the downloaded file and start playing</li>
+            <li>Open Prism Launcher, MultiMC or Modrinth App</li>
+            <li>Select <strong>Add Instance → Import from MRPack/File</strong></li>
+            <li>Choose the file and start the modpack</li>
         </ol>
-    </section>
+    </div>
 
-</main>
+</div>
 
 </body>
 </html>
