@@ -34,18 +34,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- HEADER ---------- */
-header {
-    padding: 2.5rem 1rem 1.5rem;
-    text-align: center;
-}
-
-header h1 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-}
-
 /* ---------- NAV ---------- */
 nav {
     display: flex;
@@ -80,6 +68,18 @@ nav a::after {
 
 nav a:hover::after {
     width: 100%;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
 /* ---------- CONTENT WRAPPER ---------- */
@@ -140,14 +140,6 @@ a:hover {
     color: var(--accent-strong);
 }
 
-/* ---------- HR ---------- */
-hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-    margin: 2rem 0;
-}
-
 /* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
     header {
@@ -163,10 +155,7 @@ hr {
 
 <body>
 
-<header>
-    <h1>Setup Guide</h1>
-</header>
-
+<!-- ✅ NAV FIRST -->
 <nav>
     <a href="/MossyPacksModpacks/index.html">Home</a>
     <a href="setup.html">Setup Guide</a>
@@ -174,6 +163,11 @@ hr {
     <a href="performance-tips.html">Performance Tips</a>
     <a href="download.html">Download</a>
 </nav>
+
+<!-- ✅ HEADER UNDER NAV -->
+<header>
+    <h1>Setup Guide</h1>
+</header>
 
 <div id="content">
 
