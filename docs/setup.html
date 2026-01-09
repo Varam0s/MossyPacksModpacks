@@ -4,7 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Setup Guide – Performa Modpack</title>
+
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     :root {
         --bg-light: #ffffff;
         --bg-dark: #121212;
@@ -22,6 +27,8 @@
         background-color: var(--bg-light);
         color: var(--text-light);
         transition: background 0.3s, color 0.3s;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -43,25 +50,31 @@
         text-align: center;
         color: white;
     }
+
     header h1 {
         margin: 0;
         font-size: 2rem;
     }
 
+    
     nav {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 1.5rem;
-        padding: 0.5rem 0;
+        gap: 1rem;
+        padding: 0.75rem;
         background-color: var(--nav-bg);
     }
+
     nav a {
         color: white;
         text-decoration: none;
         font-weight: 500;
         position: relative;
+        white-space: nowrap;
         transition: color 0.3s ease;
     }
+
     nav a::after {
         content: "";
         position: absolute;
@@ -72,13 +85,16 @@
         background: var(--button-bg);
         transition: width 0.3s ease;
     }
+
     nav a:hover {
         color: var(--button-bg);
     }
+
     nav a:hover::after {
         width: 100%;
     }
 
+    /* Content */
     #content {
         max-width: 1000px;
         margin: 2rem auto;
@@ -88,6 +104,7 @@
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
+
     @media (prefers-color-scheme: dark) {
         #content {
             background: rgba(18,18,18,0.8);
@@ -102,6 +119,11 @@
         text-align: center;
     }
 
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
     a.button-link {
         display: inline-block;
         margin-top: 1rem;
@@ -113,15 +135,42 @@
         text-decoration: none;
         transition: background 0.3s;
     }
+
     a.button-link:hover {
         background: var(--button-hover);
     }
+
+    
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.6rem;
+        }
+
+        #content {
+            margin: 1rem;
+            padding: 1.25rem;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+        }
+    }
 </style>
 </head>
+
 <body>
 <header>
     <h1>Setup Guide</h1>
 </header>
+
 <nav>
     <a href="/MossyPacksModpacks/index.html">Home</a>
     <a href="setup.html">Setup Guide</a>
@@ -129,31 +178,22 @@
     <a href="performance-tips.html">Performance Tips</a>
     <a href="download.html">Download</a>
 </nav>
+
 <div id="content">
     <h1 id="installation">Installation</h1>
 
-    <h2 id="-download-the-modpacks">🔽 Download the Modpacks</h2>
+    <h2>🔽 Download the Modpacks</h2>
     <p>The modpacks can be downloaded from <strong><a href="https://modrinth.com/user/Varamos">Modrinth</a></strong>.</p>
-    <hr />
+    <hr>
 
-    <h2 id="-installing-with-prism-launcher-multimc">🛠 Installing with Prism Launcher, MultiMC, Modrinth APP or GDLauncher</h2>
+    <h2>🛠 Installing with Prism Launcher, MultiMC, Modrinth APP or GDLauncher</h2>
     <ol>
         <li>Download the <code>.mrpack</code> file.</li>
         <li>Open Prism Launcher, MultiMC or Modrinth APP.</li>
         <li>Click <strong>"Add Instance" → "Import from MRPack/File"</strong>.</li>
         <li>Select the downloaded <code>.mrpack</code> file and start the modpack.</li>
     </ol>
-    <hr />
-
-    <!--
-    <h2 id="-curseforge-">✅ Curseforge</h2>
-    <ol>
-        <li><strong>Download the <code>.zip</code> file</strong> you get it from my Wiki-Download category</li>
-        <a href="download.html">Click here!</a>
-        <li><strong>Manually install Forge or Fabric</strong>.</li>
-        <li><strong>Import it from file.</strong></li>
-    </ol>
-    -->
 </div>
+
 </body>
 </html>
