@@ -1,96 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modpack Selection - MossyPacks Modpacks</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Setup Guide – Performa Modpack</title>
+
 <style>
-    body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        margin: 0;
-        background: #121212;
-        color: white;
-    }
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+/* ---------- VARIABLES ---------- */
+:root {
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
+}
+
+/* ---------- BODY ---------- */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ---------- NAV ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+/* ---------- CONTENT WRAPPER ---------- */
+#content {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-2px);
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+p {
+    color: var(--muted);
+}
+
+ol {
+    padding-left: 1.3rem;
+}
+
+li {
+    margin-bottom: 0.6rem;
+    color: var(--muted);
+}
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--accent-strong);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
     header {
-        background: linear-gradient(135deg, #333, #555);
-        padding: 1rem;
-        text-align: center;
-        color: white;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
-
-    nav {
-        background-color: #333;
-        padding: 10px;
-        text-align: center;
-    }
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 18px;
-    }
-    nav a:hover {
-        text-decoration: underline;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        padding: 2rem;
-        max-width: 1200px;
-        margin: auto;
+        padding-top: 2rem;
     }
 
     .card {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        transition: transform 0.2s, background 0.3s;
+        padding: 1.4rem;
     }
-    .card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .card h2 {
-        margin-bottom: 0.5rem;
-    }
-    .card p {
-        font-size: 0.95rem;
-        line-height: 1.4;
-        margin-bottom: 1rem;
-    }
-
-    .button {
-        display: inline-block;
-        padding: 0.6rem 1.2rem;
-        background: #1f883d;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-weight: bold;
-        transition: background 0.3s;
-    }
-    .button:hover {
-        background: #16612b;
-    }
+}
 </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Modpack Selection</h1>
-</header>
-
-<!-- Navigation -->
+<!-- ✅ NAV FIRST -->
 <nav>
     <a href="/MossyPacksModpacks/index.html">Home</a>
     <a href="setup.html">Setup Guide</a>
@@ -98,6 +163,7 @@
     <a href="performance-tips.html">Performance Tips</a>
     <a href="download.html">Download</a>
 </nav>
+
 
 <div class="container">
     <div class="card">
