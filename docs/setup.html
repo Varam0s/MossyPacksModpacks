@@ -6,194 +6,226 @@
 <title>Setup Guide – Performa Modpack</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+/* =====================
+   RESET & VARIABLES
+===================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    :root {
-        --bg-light: #ffffff;
-        --bg-dark: #121212;
-        --text-light: #000000;
-        --text-dark: #ffffff;
-        --accent: #66ccff;
-        --nav-bg: #333333;
-        --button-bg: #1f883d;
-        --button-hover: #16612b;
-    }
+:root {
+    --bg: #f5f7fa;
+    --bg-dark: #0f1115;
+    --card: #ffffff;
+    --card-dark: #161a22;
+    --text: #1a1a1a;
+    --text-dark: #eaeaea;
+    --accent: #4cc2ff;
+    --accent-strong: #1f883d;
+    --border-radius: 14px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
 
+/* =====================
+   BASE
+===================== */
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+@media (prefers-color-scheme: dark) {
     body {
-        margin: 0;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-light);
-        transition: background 0.3s, color 0.3s;
-        max-width: 100%;
-        overflow-x: hidden;
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+}
+
+/* =====================
+   HEADER
+===================== */
+header {
+    padding: 3rem 1rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1f2933, #111827);
+    color: white;
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+}
+
+header p {
+    margin-top: 0.5rem;
+    opacity: 0.85;
+}
+
+/* =====================
+   NAVIGATION
+===================== */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #111827;
+}
+
+nav a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    transition: background 0.25s, color 0.25s;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* =====================
+   MAIN CONTENT
+===================== */
+main {
+    max-width: 1000px;
+    margin: -2rem auto 4rem;
+    padding: 1rem;
+}
+
+/* =====================
+   CARDS
+===================== */
+.card {
+    background: var(--card);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background: var(--card-dark);
+    }
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    margin-bottom: 1rem;
+}
+
+/* =====================
+   LISTS
+===================== */
+ol, ul {
+    padding-left: 1.2rem;
+}
+
+li {
+    margin-bottom: 0.6rem;
+}
+
+/* =====================
+   BUTTON / LINK
+===================== */
+.button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--accent-strong);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 768px) {
+    main {
+        margin-top: -1.5rem;
     }
 
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-        nav {
-            background-color: #1f1f1f;
-        }
-        a {
-            color: var(--accent);
-        }
+    .card {
+        padding: 1.5rem;
     }
-
-    header {
-        background: linear-gradient(135deg, var(--nav-bg), #555);
-        padding: 1rem;
-        text-align: center;
-        color: white;
-    }
-
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
-
-    
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-        padding: 0.75rem;
-        background-color: var(--nav-bg);
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        position: relative;
-        white-space: nowrap;
-        transition: color 0.3s ease;
-    }
-
-    nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0%;
-        height: 2px;
-        background: var(--button-bg);
-        transition: width 0.3s ease;
-    }
-
-    nav a:hover {
-        color: var(--button-bg);
-    }
-
-    nav a:hover::after {
-        width: 100%;
-    }
-
-    /* Content */
-    #content {
-        max-width: 1000px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background: rgba(255,255,255,0.8);
-        backdrop-filter: blur(6px);
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    @media (prefers-color-scheme: dark) {
-        #content {
-            background: rgba(18,18,18,0.8);
-        }
-    }
-
-    p, li {
-        line-height: 1.6;
-    }
-
-    h1, h2 {
-        text-align: center;
-    }
-
-    img, video, iframe {
-        max-width: 100%;
-        height: auto;
-    }
-
-    a.button-link {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1rem;
-        background: var(--button-bg);
-        color: white;
-        font-weight: bold;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background 0.3s;
-    }
-
-    a.button-link:hover {
-        background: var(--button-hover);
-    }
-
-    
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.6rem;
-        }
-
-        #content {
-            margin: 1rem;
-            padding: 1.25rem;
-        }
-
-        h1 {
-            font-size: 1.4rem;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-        }
-
-        nav a {
-            font-size: 0.95rem;
-        }
-    }
+}
 </style>
 </head>
 
 <body>
+
 <header>
     <h1>Setup Guide</h1>
+    <p>Quick & easy installation for the Performa Modpack</p>
 </header>
 
 <nav>
     <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup Guide</a>
+    <a href="setup.html">Setup</a>
     <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance Tips</a>
+    <a href="performance-tips.html">Performance</a>
     <a href="download.html">Download</a>
 </nav>
 
-<div id="content">
-    <h1 id="installation">Installation</h1>
+<main>
 
-    <h2>🔽 Download the Modpacks</h2>
-    <p>The modpacks can be downloaded from <strong><a href="https://modrinth.com/user/Varamos">Modrinth</a></strong>.</p>
-    <hr>
+    <section class="card">
+        <h2>🔽 Download the Modpack</h2>
+        <p>
+            You can download the latest version of the modpack directly from
+            <strong>Modrinth</strong>.
+        </p>
+        <a class="button" href="https://modrinth.com/user/Varamos">
+            Open Modrinth
+        </a>
+    </section>
 
-    <h2>🛠 Installing with Prism Launcher, MultiMC, Modrinth APP or GDLauncher</h2>
-    <ol>
-        <li>Download the <code>.mrpack</code> file.</li>
-        <li>Open Prism Launcher, MultiMC or Modrinth APP.</li>
-        <li>Click <strong>"Add Instance" → "Import from MRPack/File"</strong>.</li>
-        <li>Select the downloaded <code>.mrpack</code> file and start the modpack.</li>
-    </ol>
-</div>
+    <section class="card">
+        <h2>🛠 Installation</h2>
+
+        <h3>Supported Launchers</h3>
+        <ul>
+            <li>Prism Launcher</li>
+            <li>MultiMC</li>
+            <li>Modrinth App</li>
+            <li>GDLauncher</li>
+        </ul>
+
+        <h3>Steps</h3>
+        <ol>
+            <li>Download the <code>.mrpack</code> file</li>
+            <li>Open your launcher</li>
+            <li>Select <strong>“Import from MRPack/File”</strong></li>
+            <li>Choose the downloaded file and start playing</li>
+        </ol>
+    </section>
+
+</main>
 
 </body>
 </html>
