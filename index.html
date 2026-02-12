@@ -4,121 +4,142 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MossyPacks Modpacks Wiki</title>
+
 <style>
-    :root {
-        --bg-light: #ffffff;
-        --bg-dark: #121212;
-        --text-light: #000000;
-        --text-dark: #ffffff;
-        --accent: #66ccff;
-        --nav-bg: #333333;
-        --button-bg: #1f883d;
-        --button-hover: #16612b;
-    }
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-light);
-        transition: background 0.3s, color 0.3s;
-    }
+/* ---------- VARIABLES ---------- */
+:root {
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
+}
 
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-        nav {
-            background-color: #1f1f1f;
-        }
-        a {
-            color: var(--accent);
-        }
-    }
+/* ---------- BODY ---------- */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
-    header {
-        background: linear-gradient(135deg, var(--nav-bg), #555);
-        padding: 1rem;
-        text-align: center;
-        color: white;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
+/* ---------- NAV ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 0.5rem 0;
-        background-color: var(--nav-bg);
-    }
-    nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        position: relative;
-        transition: color 0.3s ease;
-    }
-    nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0%;
-        height: 2px;
-        background: var(--button-bg);
-        transition: width 0.3s ease;
-    }
-    nav a:hover {
-        color: var(--button-bg);
-    }
-    nav a:hover::after {
-        width: 100%;
-    }
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
+}
 
-    #content {
-        max-width: 1000px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background: rgba(255,255,255,0.8);
-        backdrop-filter: blur(6px);
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    @media (prefers-color-scheme: dark) {
-        #content {
-            background: rgba(18,18,18,0.8);
-        }
-    }
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
 
-    p {
-        line-height: 1.6;
-        text-align: center;
-    }
+nav a:hover::after {
+    width: 100%;
+}
 
-    .button-link {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1rem;
-        background: var(--button-bg);
-        color: white;
-        font-weight: bold;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background 0.3s;
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+header p {
+    color: var(--muted);
+    margin-top: 0.6rem;
+    font-size: 1.05rem;
+}
+
+/* ---------- CONTENT ---------- */
+#content {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-3px);
+}
+
+/* ---------- BUTTON ---------- */
+.button-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.3rem;
+    border-radius: 10px;
+    background: var(--accent);
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease;
+}
+
+.button-link:hover {
+    background: var(--accent-strong);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
     }
-    .button-link:hover {
-        background: var(--button-hover);
-    }
+}
 </style>
 </head>
+
 <body>
-<header>
-    <h1>Mossy-Packs Modpack Wiki</h1>
-</header>
+
+<!-- NAVIGATION -->
 <nav>
     <a href="index.html">Home</a>
     <a href="docs/setup.html">Setup Guide</a>
@@ -126,12 +147,30 @@
     <a href="docs/performance-tips.html">Performance Tips</a>
     <a href="docs/download.html">Download</a>
 </nav>
+
+<!-- HEADER -->
+<header>
+    <h1>MossyPacks Modpack Wiki</h1>
+    <p>Your official hub for guides, configuration & downloads</p>
+</header>
+
+<!-- MAIN CONTENT -->
 <div id="content">
-    <p>Welcome to the official Wiki for the MossyPacks Modpacks!</p>
-    <p>Use the navigation above to access setup instructions, configuration details, performance tips and download page.</p>
-    <div style="text-align:center;">
-        <a href="https://modrinth.com/user/Varamos" class="button-link">Check Out the Modpacksite</a>
+
+    <div class="card">
+        <h2>Welcome 👋</h2>
+        <p>
+            This is the official Wiki for all MossyPacks Modpacks.<br>
+            Use the navigation above to access setup instructions, configuration details,
+            performance tips and download pages.
+        </p>
+
+        <a href="https://modrinth.com/user/Varamos" class="button-link">
+            Visit Modrinth Profile →
+        </a>
     </div>
+
 </div>
+
 </body>
 </html>
