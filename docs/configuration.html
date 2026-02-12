@@ -21,7 +21,6 @@
     --text: #eaeaea;
     --muted: #b3b3b3;
     --accent: #66ccff;
-    --accent-strong: #4bb4e6;
     --radius: 14px;
 }
 
@@ -34,40 +33,75 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- NAV ---------- */
-nav {
+/* ================================================= */
+/* ✅ MODERN NAVBAR                                 */
+/* ================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-nav a {
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.2rem 0;
+    transition: 0.2s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+.nav-links a:hover {
+    color: var(--accent);
 }
 
-nav a:hover::after {
-    width: 100%;
+.menu-toggle {
+    display: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        padding: 1rem;
+        border-radius: var(--radius);
+        width: 200px;
+
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
 }
 
 /* ---------- HEADER ---------- */
@@ -109,7 +143,7 @@ header p {
     transform: translateY(-3px);
 }
 
-/* ---------- HEADINGS ---------- */
+/* ---------- TYPOGRAPHY ---------- */
 h2 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -146,26 +180,32 @@ code {
     border-radius: 6px;
     font-size: 0.95rem;
 }
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-    .card {
-        padding: 1.5rem;
-    }
-}
 </style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-    <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup Guide</a>
-    <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance Tips</a>
-    <a href="download.html">Download</a>
-</nav>
+<!-- ✅ MODERN NAVBAR -->
+<div class="navbar">
+    <a href="/MossyPacksModpacks/index.html" class="nav-logo">🌿 MossyPacks</a>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="/MossyPacksModpacks/index.html">Home</a>
+        <a href="setup.html">Setup</a>
+        <a href="configuration.html" style="color: var(--accent);">Config</a>
+        <a href="performance-tips.html">Performance</a>
+        <a href="download.html">Download</a>
+    </div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -176,7 +216,6 @@ code {
 <!-- MAIN CONTENT -->
 <div id="content">
 
-    <!-- INTRO CARD -->
     <div class="card">
         <h2>⚙️ MossyPacks Configuration Guide</h2>
         <p>
@@ -186,7 +225,6 @@ code {
         </p>
     </div>
 
-    <!-- PERFORMANCE SETTINGS -->
     <div class="card">
         <h2>🛠️ Configuring Performance Settings</h2>
         <p>
@@ -201,8 +239,7 @@ code {
             <li><strong>Render Distance:</strong> Recommended 6–8 chunks</li>
         </ul>
 
-        <h3>2. Iris / OptiFine Settings (if installed)</h3>
-        <p>If you use shader tools like Iris or OptiFine:</p>
+        <h3>2. Iris / OptiFine Settings</h3>
         <ul>
             <li><strong>Smooth Lighting:</strong> Off for FPS boost</li>
             <li><strong>Performance Mode:</strong> Max FPS</li>
@@ -210,7 +247,6 @@ code {
         </ul>
 
         <h3>3. Memory Allocation</h3>
-        <p>To allocate more RAM:</p>
         <ul>
             <li>Open Minecraft Launcher</li>
             <li>Edit your modpack profile</li>
@@ -220,13 +256,12 @@ code {
         <p>💡 Recommended: <strong>6–8 GB RAM</strong></p>
     </div>
 
-    <!-- TROUBLESHOOTING -->
     <div class="card">
         <h2>❓ Troubleshooting</h2>
         <ul>
             <li><strong>Low FPS:</strong> Lower render distance, disable V-Sync</li>
             <li><strong>Game Crashes:</strong> Check logs for mod conflicts</li>
-            <li><strong>World Lag:</strong> Reduce world-gen mods or heavy shaders</li>
+            <li><strong>World Lag:</strong> Reduce heavy shaders or world-gen mods</li>
         </ul>
     </div>
 
