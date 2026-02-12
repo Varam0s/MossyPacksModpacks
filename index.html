@@ -34,45 +34,80 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- NAV ---------- */
-nav {
+/* ================================================= */
+/* ✅ MODERN NAVBAR                                 */
+/* ================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-nav a {
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.2rem 0;
+    transition: 0.2s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+.nav-links a:hover {
+    color: var(--accent);
 }
 
-nav a:hover::after {
-    width: 100%;
+.menu-toggle {
+    display: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        padding: 1rem;
+        border-radius: var(--radius);
+        width: 200px;
+
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
 }
 
 /* ---------- HEADER ---------- */
 header {
-    padding: 2.5rem 1rem 1.5rem;
+    padding: 3rem 1rem 2rem;
     text-align: center;
 }
 
@@ -118,35 +153,42 @@ header p {
     padding: 0.7rem 1.3rem;
     border-radius: 10px;
     background: var(--accent);
-    color: black;
+    color: #0f1115;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.25s ease;
+    transition: background 0.25s ease, transform 0.2s ease;
 }
 
 .button-link:hover {
     background: var(--accent-strong);
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-    .card {
-        padding: 1.5rem;
-    }
+    transform: translateY(-2px);
 }
 </style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-    <a href="index.html">Home</a>
-    <a href="docs/setup.html">Setup Guide</a>
-    <a href="docs/configuration.html">Configuration</a>
-    <a href="docs/performance-tips.html">Performance Tips</a>
-    <a href="docs/download.html">Download</a>
-</nav>
+<!-- ✅ MODERN NAVBAR -->
+<div class="navbar">
+    <a href="index.html" class="nav-logo">🌿 MossyPacks</a>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="index.html" style="color: var(--accent);">Home</a>
+        <a href="docs/setup.html">Setup</a>
+        <a href="docs/configuration.html">Config</a>
+        <a href="docs/performance-tips.html">Performance</a>
+        <a href="docs/download.html">Download</a>
+    </div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -161,11 +203,11 @@ header p {
         <h2>Welcome 👋</h2>
         <p>
             This is the official Wiki for all MossyPacks Modpacks.<br>
-            Use the navigation above to access setup instructions, configuration details,
-            performance tips and download pages.
+            Use the navigation above to access setup instructions,
+            configuration details, performance tips and download pages.
         </p>
 
-        <a href="https://modrinth.com/user/Varamos" class="button-link">
+        <a href="https://modrinth.com/user/Varamos" target="_blank" class="button-link">
             Visit Modrinth Profile →
         </a>
     </div>
