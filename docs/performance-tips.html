@@ -21,7 +21,6 @@
     --text: #eaeaea;
     --muted: #b3b3b3;
     --accent: #66ccff;
-    --accent-strong: #4bb4e6;
     --radius: 14px;
 }
 
@@ -34,40 +33,78 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- NAV ---------- */
-nav {
+/* ================================================= */
+/*  MODERN NAVBAR (MossyPacks Style)               */
+/* ================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-nav a {
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.2rem 0;
+    transition: 0.2s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+.nav-links a:hover {
+    color: var(--accent);
 }
 
-nav a:hover::after {
-    width: 100%;
+/* Mobile Toggle */
+.menu-toggle {
+    display: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+
+        padding: 1rem;
+        border-radius: var(--radius);
+        width: 200px;
+
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
 }
 
 /* ---------- HEADER ---------- */
@@ -79,7 +116,6 @@ header {
 header h1 {
     font-size: clamp(2rem, 4vw, 2.6rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
 }
 
 header p {
@@ -114,9 +150,6 @@ header p {
 h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 ul {
@@ -131,26 +164,32 @@ li {
 strong {
     color: var(--text);
 }
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-    .card {
-        padding: 1.5rem;
-    }
-}
 </style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-    <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup Guide</a>
-    <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance Tips</a>
-    <a href="download.html">Download</a>
-</nav>
+<!-- ✅ MODERN NAVBAR -->
+<div class="navbar">
+    <a href="/MossyPacksModpacks/index.html" class="nav-logo">🌿 MossyPacks</a>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="/MossyPacksModpacks/index.html">Home</a>
+        <a href="setup.html">Setup</a>
+        <a href="configuration.html">Config</a>
+        <a href="performance-tips.html" style="color: var(--accent);">Performance</a>
+        <a href="download.html">Download</a>
+    </div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -161,7 +200,6 @@ strong {
 <!-- MAIN CONTENT -->
 <div id="content">
 
-    <!-- PERFORMANCE CARD -->
     <div class="card">
         <h2>🔧 Optimize Graphics Settings</h2>
         <ul>
@@ -172,6 +210,16 @@ strong {
         </ul>
     </div>
 
+    <div class="card">
+        <h2>⚙ Allocate More RAM</h2>
+        <ul>
+            <li><strong>Recommended:</strong> 4–6GB for performance modpacks</li>
+            <li>Avoid allocating more than half of your total system RAM</li>
+            <li>Use Java 21 (if supported by your loader)</li>
+        </ul>
+    </div>
+
+    
 </div>
 
 </body>
