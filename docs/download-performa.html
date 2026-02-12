@@ -1,152 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Performa Modpack</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-       
-        body {
-            background-color: white;
-            color: black;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Download Performa Modpack</title>
 
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #ffffff;
-            }
-            a {
-                color: #66ccff;
-            }
-             h2 {
-        color: white; 
-            }
+<style>
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        }
+/* ---------- VARIABLES ---------- */
+:root {
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
+}
 
-    
-        .download-button {
-            background-color: #1f883d;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            transition: background 0.3s ease;
-        }
-        .download-button:hover {
-            background-color: #16612b;
-        }
+/* ---------- BODY ---------- */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
-        
-        .download-section.grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+/* ---------- NAV ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-        .download-section.list {
-            display: block;
-        }
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
+}
 
-        .download-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
 
-        .download-section.cards .download-card {
-            width: 250px;
-            display: inline-block;
-        }
+nav a:hover::after {
+    width: 100%;
+}
 
-        .download-section.list .download-card {
-            width: 80%;
-            margin: 10px auto;
-            box-shadow: none;
-            border-bottom: 1px solid gray;
-            padding-bottom: 10px;
-        }
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
 
-        .download-section.minimal .download-card {
-            background: none;
-            box-shadow: none;
-        }
-    </style>
-    <script>
-        async function fetchModpack(version, loader) {
-            try {
-                const response = await fetch(`https://api.modrinth.com/v2/project/Jpn0aBDV/version?loaders=["${loader}"]&game_versions=["${version}"]`);
-                const versions = await response.json();
-                const modVersion = versions.find(v => v.loaders.includes(loader));
+header h1 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+}
 
-                if (modVersion && modVersion.files.length > 0) {
-                    window.location.href = modVersion.files[0].url;
-                } else {
-                    alert(`No ${loader} version found for ${version}!`);
-                }
-            } catch (error) {
-                console.error("Error fetching version:", error);
-                alert("Failed to fetch version. Please try again later.");
-            }
+header p {
+    margin-top: 0.6rem;
+    color: var(--muted);
+}
+
+/* ---------- CONTENT ---------- */
+#content {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-3px);
+}
+
+/* ---------- DOWNLOAD GRID LAYOUT ---------- */
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Specific styling for the download cards to match the theme */
+.download-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.download-card h2 {
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    color: var(--accent);
+}
+
+/* ---------- BUTTONS ---------- */
+.download-button {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none; /* For anchor tags acting as buttons */
+    display: inline-block;
+}
+
+.download-button:hover {
+    background-color: var(--accent);
+    color: #0f1115;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Back button specific styling */
+.back-link-container {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--surface-strong);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: var(--accent);
+    color: #0f1115;
+    border-color: var(--accent);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+    }
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+async function fetchModpack(version, loader) {
+    try {
+        const response = await fetch(`https://api.modrinth.com/v2/project/Jpn0aBDV/version?loaders=["${loader}"]&game_versions=["${version}"]`);
+        const versions = await response.json();
+        const modVersion = versions.find(v => v.loaders.includes(loader));
+
+        if (modVersion && modVersion.files.length > 0) {
+            window.location.href = modVersion.files[0].url;
+        } else {
+            alert(`No ${loader} version found for ${version}!`);
         }
-    </script>
+    } catch (error) {
+        console.error("Error fetching version:", error);
+        alert("Failed to fetch version. Please try again later.");
+    }
+}
+</script>
 </head>
 <body>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="setup.html">Setup Guide</a>
+    <a href="configuration.html">Configuration</a>
+    <a href="performance-tips.html">Performance Tips</a>
+    <a href="download.html" style="color: var(--accent);">Download</a>
+</nav>
+
+<!-- HEADER -->
+<header>
     <h1>Download Performa Modpack</h1>
-    <p>Select a version below to download the corresponding Fabric, Quilt, or NeoForge Modpack.</p>
+    <p>Select your loader and Minecraft version below to get started</p>
+</header>
 
-    
-    <div class="download-section grid"> 
-        <!-- Fabric -->
-        <div class="download-card">
-            <h2>Fabric</h2>
-            <button class="download-button" onclick="fetchModpack('1.21.10', 'fabric')">Download 1.21.10</button>
-            <button class="download-button" onclick="fetchModpack('1.21.9', 'fabric')">Download 1.21.9</button>
-            <button class="download-button" onclick="fetchModpack('1.21.8', 'fabric')">Download 1.21.8</button>
-            <button class="download-button" onclick="fetchModpack('1.21.6', 'fabric')">Download 1.21.6</button>
-            <button class="download-button" onclick="fetchModpack('1.21.5', 'fabric')">Download 1.21.5</button>
-            <button class="download-button" onclick="fetchModpack('1.21.4', 'fabric')">Download 1.21.4</button>
-            <button class="download-button" onclick="fetchModpack('1.21.1', 'fabric')">Download 1.21.1</button>
+<!-- MAIN CONTENT -->
+<div id="content">
+
+    <div class="card">
+        <div class="download-grid">
+            
+            <!-- Fabric Column -->
+            <div class="download-card">
+                <h2>Fabric</h2>
+                <button class="download-button" onclick="fetchModpack('1.21.10', 'fabric')">Download 1.21.10</button>
+                <button class="download-button" onclick="fetchModpack('1.21.9', 'fabric')">Download 1.21.9</button>
+                <button class="download-button" onclick="fetchModpack('1.21.8', 'fabric')">Download 1.21.8</button>
+                <button class="download-button" onclick="fetchModpack('1.21.6', 'fabric')">Download 1.21.6</button>
+                <button class="download-button" onclick="fetchModpack('1.21.5', 'fabric')">Download 1.21.5</button>
+                <button class="download-button" onclick="fetchModpack('1.21.4', 'fabric')">Download 1.21.4</button>
+                <button class="download-button" onclick="fetchModpack('1.21.1', 'fabric')">Download 1.21.1</button>
+            </div>
+
+            <!-- Quilt Column -->
+            <div class="download-card">
+                <h2>Quilt</h2>
+                <button class="download-button" onclick="fetchModpack('1.21.9', 'quilt')">Download 1.21.9</button>
+                <button class="download-button" onclick="fetchModpack('1.21.8', 'quilt')">Download 1.21.8</button>
+                <button class="download-button" onclick="fetchModpack('1.21.6', 'quilt')">Download 1.21.6</button>
+                <button class="download-button" onclick="fetchModpack('1.21.5', 'quilt')">Download 1.21.5</button>
+                <button class="download-button" onclick="fetchModpack('1.21.4', 'quilt')">Download 1.21.4</button>
+                <button class="download-button" onclick="fetchModpack('1.21.1', 'quilt')">Download 1.21.1</button>
+            </div>
+
+            <!-- NeoForge Column -->
+            <div class="download-card">
+                <h2>NeoForge</h2>
+                <button class="download-button" onclick="fetchModpack('1.21.9', 'neoforge')">Download 1.21.9</button>
+                <button class="download-button" onclick="fetchModpack('1.21.8', 'neoforge')">Download 1.21.8</button>
+                <button class="download-button" onclick="fetchModpack('1.21.6', 'neoforge')">Download 1.21.6</button>
+                <button class="download-button" onclick="fetchModpack('1.21.5', 'neoforge')">Download 1.21.5</button>
+                <button class="download-button" onclick="fetchModpack('1.21.4', 'neoforge')">Download 1.21.4</button>
+                <button class="download-button" onclick="fetchModpack('1.21.1', 'neoforge')">Download 1.21.1</button>
+            </div>
+
         </div>
-
-        <!-- Quilt -->
-        <div class="download-card">
-            <h2>Quilt</h2>
-            <button class="download-button" onclick="fetchModpack('1.21.9', 'quilt')">Download 1.21.9</button>
-            <button class="download-button" onclick="fetchModpack('1.21.8', 'quilt')">Download 1.21.8</button>
-            <button class="download-button" onclick="fetchModpack('1.21.6', 'quilt')">Download 1.21.6</button>
-            <button class="download-button" onclick="fetchModpack('1.21.5', 'quilt')">Download 1.21.5</button>
-            <button class="download-button" onclick="fetchModpack('1.21.4', 'quilt')">Download 1.21.4</button>
-            <button class="download-button" onclick="fetchModpack('1.21.1', 'quilt')">Download 1.21.1</button>
-        </div>
-
-        <!-- NeoForge -->
-        <div class="download-card">
-            <h2>NeoForge</h2>
-            <button class="download-button" onclick="fetchModpack('1.21.9', 'neoforge')">Download 1.21.9</button>
-            <button class="download-button" onclick="fetchModpack('1.21.8', 'neoforge')">Download 1.21.8</button>
-            <button class="download-button" onclick="fetchModpack('1.21.6', 'neoforge')">Download 1.21.6</button>
-            <button class="download-button" onclick="fetchModpack('1.21.5', 'neoforge')">Download 1.21.5</button>
-            <button class="download-button" onclick="fetchModpack('1.21.4', 'neoforge')">Download 1.21.4</button>
-            <button class="download-button" onclick="fetchModpack('1.21.1', 'neoforge')">Download 1.21.1</button>
-        </div>
-
-      
     </div>
 
-    <br><br>
-    <a href="../index.html" class="download-button">Back to Home</a>
+    <div class="back-link-container">
+        <a href="../index.html" class="back-button">← Back to Home</a>
+    </div>
+
+</div>
+
 </body>
 </html>
