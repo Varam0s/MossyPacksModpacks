@@ -1,96 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Performance Tips</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Performance Tips – MossyPacks</title>
+
 <style>
-    /* Default body styling */
-    body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
-        margin: 0;
-    }
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    /* Dark mode styling */
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: #121212;
-            color: #ffffff;
-        }
-        a {
-            color: #66ccff;
-        }
-    }
+/* ---------- VARIABLES ---------- */
+:root {
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
+}
 
-    /* Header styling (von setup.html) */
-    header {
-        background: linear-gradient(135deg, #333, #555);
-        padding: 1rem;
-        text-align: center;
-        color: white;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
+/* ---------- BODY ---------- */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
-    /* Navigation styling */
-    nav {
-        background-color: #333;
-        padding: 10px;
-        text-align: center;
-    }
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 18px;
-    }
-    nav a:hover {
-        text-decoration: underline;
-    }
+/* ---------- NAV ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-    /* Content styling */
-    #content {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+header p {
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+/* ---------- CONTENT ---------- */
+#content {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-3px);
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+ul {
+    padding-left: 1.3rem;
+}
+
+li {
+    margin-bottom: 0.6rem;
+    color: var(--muted);
+}
+
+strong {
+    color: var(--text);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
     }
+}
 </style>
 </head>
+
 <body>
 
-    <!-- New Header -->
-    <header>
-        <h1>Performance Tips</h1>
-    </header>
+<!-- NAVIGATION -->
+<nav>
+    <a href="/MossyPacksModpacks/index.html">Home</a>
+    <a href="setup.html">Setup Guide</a>
+    <a href="configuration.html">Configuration</a>
+    <a href="performance-tips.html">Performance Tips</a>
+    <a href="download.html">Download</a>
+</nav>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="/MossyPacksModpacks/index.html">Home</a>
-        <a href="setup.html">Setup Guide</a>
-        <a href="configuration.html">Configuration</a>
-        <a href="performance-tips.html">Performance Tips</a>
-        <a href="download.html">Download</a>
-    </nav>
+<!-- HEADER -->
+<header>
+    <h1>Performance Tips</h1>
+    <p>Improve FPS, reduce lag and optimize your Minecraft experience</p>
+</header>
 
-    <!-- Content -->
-    <div id="content">
-        <h1 id="performance-tips">Performance Tips</h1>
-       
+<!-- MAIN CONTENT -->
+<div id="content">
 
-        <h2 id="-optimize-graphics-settings">🔧 Optimize Graphics Settings</h2>
+    <!-- PERFORMANCE CARD -->
+    <div class="card">
+        <h2>🔧 Optimize Graphics Settings</h2>
         <ul>
-            <li><strong>Render Distance:</strong> 8-12 Chunks</li>
+            <li><strong>Render Distance:</strong> 8–12 Chunks</li>
             <li><strong>VSync:</strong> Off (unless screen tearing occurs)</li>
             <li><strong>Graphics:</strong> Fast (instead of Fancy)</li>
             <li><strong>Smooth Lighting:</strong> Off or Minimum</li>
         </ul>
     </div>
+
+</div>
 
 </body>
 </html>
