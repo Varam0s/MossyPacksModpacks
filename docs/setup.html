@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Setup Guide – Performa Modpack</title>
+<title>Setup Guide – MossyPacks</title>
 
 <style>
 /* ---------- RESET ---------- */
@@ -21,7 +21,6 @@
     --text: #eaeaea;
     --muted: #b3b3b3;
     --accent: #66ccff;
-    --accent-strong: #4bb4e6;
     --radius: 14px;
 }
 
@@ -34,40 +33,75 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- NAV ---------- */
-nav {
+/* ================================================= */
+/* ✅ MODERN NAVBAR                                 */
+/* ================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-nav a {
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.2rem 0;
+    transition: 0.2s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+.nav-links a:hover {
+    color: var(--accent);
 }
 
-nav a:hover::after {
-    width: 100%;
+.menu-toggle {
+    display: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        padding: 1rem;
+        border-radius: var(--radius);
+        width: 200px;
+
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
 }
 
 /* ---------- HEADER ---------- */
@@ -79,10 +113,9 @@ header {
 header h1 {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
 }
 
-/* ---------- CONTENT WRAPPER ---------- */
+/* ---------- CONTENT ---------- */
 #content {
     max-width: 900px;
     margin: 2.5rem auto;
@@ -106,11 +139,6 @@ header h1 {
 }
 
 /* ---------- TYPOGRAPHY ---------- */
-h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
 h2 {
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
@@ -132,62 +160,75 @@ li {
     color: var(--muted);
 }
 
+strong {
+    color: var(--text);
+}
+
+code {
+    background: rgba(255,255,255,0.08);
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
 a {
     color: var(--accent);
 }
 
 a:hover {
-    color: var(--accent-strong);
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-    header {
-        padding-top: 2rem;
-    }
-
-    .card {
-        padding: 1.4rem;
-    }
+    color: #4bb4e6;
 }
 </style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </head>
 
 <body>
 
-<!-- ✅ NAV FIRST -->
-<nav>
-    <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup Guide</a>
-    <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance Tips</a>
-    <a href="download.html">Download</a>
-</nav>
+<!-- ✅ MODERN NAVBAR -->
+<div class="navbar">
+    <a href="/MossyPacksModpacks/index.html" class="nav-logo">🌿 MossyPacks</a>
 
-<!-- ✅ HEADER UNDER NAV -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="/MossyPacksModpacks/index.html">Home</a>
+        <a href="setup.html" style="color: var(--accent);">Setup</a>
+        <a href="configuration.html">Config</a>
+        <a href="performance-tips.html">Performance</a>
+        <a href="download.html">Download</a>
+    </div>
+</div>
+
+<!-- HEADER -->
 <header>
     <h1>Setup Guide</h1>
 </header>
 
+<!-- CONTENT -->
 <div id="content">
 
-    
-
     <div class="card">
-        <h2>🔽 Download the Modpacks</h2>
+        <h2>🔽 Download the Modpack</h2>
         <p>
-            The modpacks can be downloaded from
-            <strong><a href="https://modrinth.com/user/Varamos">Modrinth</a></strong> or right Here     <a href="download.html">Download</a>
+            You can download the modpack from  
+            <strong><a href="https://modrinth.com/user/Varamos" target="_blank">Modrinth</a></strong>  
+            or directly on our <a href="download.html">Download Page</a>.
         </p>
     </div>
 
     <div class="card">
-        <h2>🛠 Installing the Modpack</h2>
+        <h2>🛠 Install the Modpack</h2>
         <ol>
             <li>Download the <code>.mrpack</code> file</li>
-            <li>Open Prism Launcher, MultiMC or Modrinth App</li>
+            <li>Open Prism Launcher, MultiMC, or the Modrinth App</li>
             <li>Select <strong>Add Instance → Import from MRPack/File</strong></li>
-            <li>Choose the file and start the modpack</li>
+            <li>Choose the file and launch the modpack</li>
         </ol>
     </div>
 
