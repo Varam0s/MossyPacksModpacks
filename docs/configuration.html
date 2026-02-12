@@ -1,123 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <style>
-        /* Default body styling */
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Configuration – MossyPacks</title>
 
-        /* Dark mode styling */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #ffffff;
-            }
-            a {
-                color: #66ccff;
-            }
-        }
+<style>
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Header styling */
-        header {
-            background: linear-gradient(135deg, #333, #555);
-            padding: 1rem;
-            text-align: center;
-            color: white;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
+/* ---------- VARIABLES ---------- */
+:root {
+    --bg: #0f1115;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-strong: rgba(255, 255, 255, 0.12);
+    --text: #eaeaea;
+    --muted: #b3b3b3;
+    --accent: #66ccff;
+    --accent-strong: #4bb4e6;
+    --radius: 14px;
+}
 
-        /* Navigation styling */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
+/* ---------- BODY ---------- */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1a1d24, #0f1115);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
-        /* Content styling */
-        #content {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-        }
-    </style>
+/* ---------- NAV ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+}
+
+header p {
+    margin-top: 0.6rem;
+    color: var(--muted);
+}
+
+/* ---------- CONTENT ---------- */
+#content {
+    max-width: 950px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- CARD ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-3px);
+}
+
+/* ---------- HEADINGS ---------- */
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.15rem;
+}
+
+p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding-left: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.6rem;
+    color: var(--muted);
+}
+
+strong {
+    color: var(--text);
+}
+
+code {
+    background: rgba(255,255,255,0.08);
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    
-    <header>
-        <h1>Configuration</h1>
-    </header>
+<!-- NAVIGATION -->
+<nav>
+    <a href="/MossyPacksModpacks/index.html">Home</a>
+    <a href="setup.html">Setup Guide</a>
+    <a href="configuration.html">Configuration</a>
+    <a href="performance-tips.html">Performance Tips</a>
+    <a href="download.html">Download</a>
+</nav>
 
-    <nav>
-        <a href="/MossyPacksModpacks/index.html">Home</a>
-        <a href="setup.html">Setup Guide</a>
-        <a href="configuration.html">Configuration</a>
-        <a href="performance-tips.html">Performance Tips</a>
-        <a href="download.html">Download</a>
-    </nav>
-    
-    <div id="content">
-        <h1 id="mossypacks-modpacks-configuration">MossyPacks Modpacks Configuration</h1>
-        <p>Welcome to the <strong>MossyPacks Modpacks Configuration</strong> guide! Here you&#39;ll learn how to customize and configure your modpacks for optimal performance.</p>
+<!-- HEADER -->
+<header>
+    <h1>Configuration</h1>
+    <p>Customize your MossyPacks Modpacks for the best experience</p>
+</header>
 
-        <h2 id="-configuring-performance-settings-">🛠️ <strong>Configuring Performance Settings</strong></h2>
-        <p>The Modpacks are designed to have good performance, but there are additional settings you can adjust to further optimize your experience.</p>
-        <hr />
+<!-- MAIN CONTENT -->
+<div id="content">
 
-        <h3 id="1-graphics-settings-">1. <strong>Graphics Settings</strong></h3>
+    <!-- INTRO CARD -->
+    <div class="card">
+        <h2>⚙️ MossyPacks Configuration Guide</h2>
+        <p>
+            Welcome to the official configuration guide!  
+            Here you’ll learn how to tweak performance settings, graphics options,
+            and memory allocation.
+        </p>
+    </div>
+
+    <!-- PERFORMANCE SETTINGS -->
+    <div class="card">
+        <h2>🛠️ Configuring Performance Settings</h2>
+        <p>
+            MossyPacks Modpacks are already optimized, but you can squeeze out even more FPS
+            with the following tweaks.
+        </p>
+
+        <h3>1. Graphics Settings</h3>
         <ul>
-            <li><strong>V-Sync</strong>: Disabling V-Sync can improve FPS, but may cause screen tearing. To disable it, go to <code>Options</code> → <code>Video Settings</code> and turn off V-Sync.</li>
-            <li><strong>Graphics Quality</strong>: In the <code>Video Settings</code> menu, set this to <strong>Fast</strong> for higher FPS.</li>
-            <li><strong>Render Distance</strong>: Recommended 6-8 chunks for best performance.</li>
+            <li><strong>V-Sync:</strong> Turn off in <code>Options → Video Settings</code></li>
+            <li><strong>Graphics Quality:</strong> Set to <strong>Fast</strong></li>
+            <li><strong>Render Distance:</strong> Recommended 6–8 chunks</li>
         </ul>
-        <hr />
 
-        <h3 id="2-optifine-settings-if-installed-">2. <strong>OptiFine/Iris Settings (if installed)</strong></h3>
-        <p>If you are using <strong>OptiFine</strong>, try:</p>
+        <h3>2. Iris / OptiFine Settings (if installed)</h3>
+        <p>If you use shader tools like Iris or OptiFine:</p>
         <ul>
-            <li><strong>Smooth Lighting</strong>: Off for FPS boost.</li>
-            <li><strong>Performance</strong>: Max FPS.</li>
-            <li><strong>Chunk Loading</strong>: Multi-Core.</li>
+            <li><strong>Smooth Lighting:</strong> Off for FPS boost</li>
+            <li><strong>Performance Mode:</strong> Max FPS</li>
+            <li><strong>Chunk Loading:</strong> Multi-Core enabled</li>
         </ul>
-        <hr />
 
-        <h3 id="3-memory-allocation-">3. <strong>Memory Allocation</strong></h3>
+        <h3>3. Memory Allocation</h3>
         <p>To allocate more RAM:</p>
         <ul>
-            <li>Open Minecraft Launcher.</li>
-            <li>Edit your modpack profile.</li>
-            <li>Under <strong>JVM Arguments</strong>, set <code>-Xmx</code> value (e.g., <code>-Xmx4G</code>).</li>
+            <li>Open Minecraft Launcher</li>
+            <li>Edit your modpack profile</li>
+            <li>Under <strong>JVM Arguments</strong>, set <code>-Xmx6G</code> or higher</li>
         </ul>
-        <p>💡 Recommended: 6–8 GB RAM</p>
-        <hr>
 
-        <h2 id="-troubleshooting-configuration-issues-">❓ <strong>Troubleshooting</strong></h2>
+        <p>💡 Recommended: <strong>6–8 GB RAM</strong></p>
+    </div>
+
+    <!-- TROUBLESHOOTING -->
+    <div class="card">
+        <h2>❓ Troubleshooting</h2>
         <ul>
-            <li><strong>Low FPS</strong>: Lower render distance, disable V-Sync.</li>
-            <li><strong>Game Crashes</strong>: Check logs for mod conflicts, adjust RAM allocation.</li>
-            <li><strong>Lag on World Load</strong>: Reduce world generation settings or disable heavy mods.</li>
+            <li><strong>Low FPS:</strong> Lower render distance, disable V-Sync</li>
+            <li><strong>Game Crashes:</strong> Check logs for mod conflicts</li>
+            <li><strong>World Lag:</strong> Reduce world-gen mods or heavy shaders</li>
         </ul>
     </div>
+
+</div>
+
 </body>
 </html>
