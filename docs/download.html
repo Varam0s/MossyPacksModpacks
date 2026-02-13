@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Setup Guide – Performa Modpack</title>
+<title>Downloads – MossyPacks</title>
 
 <style>
 /* ---------- RESET ---------- */
@@ -21,7 +21,6 @@
     --text: #eaeaea;
     --muted: #b3b3b3;
     --accent: #66ccff;
-    --accent-strong: #4bb4e6;
     --radius: 14px;
 }
 
@@ -34,40 +33,77 @@ body {
     overflow-x: hidden;
 }
 
-/* ---------- NAV ---------- */
-nav {
+/* ================================================= */
+/*  MODERN NAVBAR                                   */
+/* ================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    padding: 0.75rem 1rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-nav a {
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.2rem 0;
+    transition: 0.2s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+.nav-links a:hover {
+    color: var(--accent);
 }
 
-nav a:hover::after {
-    width: 100%;
+/* Mobile Toggle */
+.menu-toggle {
+    display: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+
+        padding: 1rem;
+        border-radius: var(--radius);
+        width: 200px;
+
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
 }
 
 /* ---------- HEADER ---------- */
@@ -77,12 +113,16 @@ header {
 }
 
 header h1 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 2.6rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
 }
 
-/* ---------- CONTENT WRAPPER ---------- */
+header p {
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+/* ---------- CONTENT ---------- */
 #content {
     max-width: 900px;
     margin: 2.5rem auto;
@@ -94,83 +134,74 @@ header h1 {
     background: var(--surface);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--radius);
-    padding: 1.8rem;
-    margin-bottom: 1.8rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
     backdrop-filter: blur(12px);
+
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .card:hover {
     background: var(--surface-strong);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
-/* ---------- TYPOGRAPHY ---------- */
-h1 {
-    text-align: center;
-    margin-bottom: 2rem;
+/* ---------- BUTTON ---------- */
+.button {
+    display: inline-block;
+    margin-top: 1rem;
+
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+
+    background: var(--accent);
+    color: #0f1115;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: 0.25s ease;
 }
 
-h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-p {
-    color: var(--muted);
-}
-
-ol {
-    padding-left: 1.3rem;
-}
-
-li {
-    margin-bottom: 0.6rem;
-    color: var(--muted);
-}
-
-a {
-    color: var(--accent);
-}
-
-a:hover {
-    color: var(--accent-strong);
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-    header {
-        padding-top: 2rem;
-    }
-
-    .card {
-        padding: 1.4rem;
-    }
+.button:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
 }
 </style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </head>
 
 <body>
 
-<!-- ✅ NAV FIRST -->
-<nav>
-    <a href="/MossyPacksModpacks/index.html">Home</a>
-    <a href="setup.html">Setup Guide</a>
-    <a href="configuration.html">Configuration</a>
-    <a href="performance-tips.html">Performance Tips</a>
-    <a href="download.html">Download</a>
-</nav>
+<!-- ✅ MODERN NAVBAR -->
+<div class="navbar">
+    <a href="/MossyPacksModpacks/index.html" class="nav-logo">🌿 MossyPacks</a>
 
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="/MossyPacksModpacks/index.html">Home</a>
+        <a href="setup.html">Setup</a>
+        <a href="configuration.html">Config</a>
+        <a href="performance-tips.html">Performance</a>
+        <a href="download.html" style="color: var(--accent);">Download</a>
+    </div>
+</div>
+
+<!-- HEADER -->
 <header>
     <h1>Downloads</h1>
+    <p>Select your MossyPacks Modpack below</p>
 </header>
 
+<!-- CONTENT -->
 <div id="content">
 
-<div class="container">
     <div class="card">
         <h2>Performa Modpack</h2>
         <p>A performance-optimized modpack for maximum FPS!</p>
@@ -179,45 +210,46 @@ a:hover {
 
     <div class="card">
         <h2>FeatherLite</h2>
-        <p>A lightweight performance modpack to boost your fps and overall performance!</p>
+        <p>A lightweight performance modpack to boost FPS and overall performance!</p>
         <a href="download-featherlite.html" class="button">Download</a>
     </div>
 
     <div class="card">
         <h2>DeckCraft Nexus</h2>
-        <p>DeckCraft Nexus - An optimized Minecraft modpack for the Steam Deck!</p>
+        <p>An optimized Minecraft modpack for the Steam Deck!</p>
         <a href="download-craftdeck.html" class="button">Download</a>
     </div>
 
     <div class="card">
         <h2>ROG Ally Modpack</h2>
-        <p>A simple modpack that improves overall performance and enables controller support for the Asus ROG Ally!</p>
+        <p>Improves performance and enables controller support for Asus ROG Ally.</p>
         <a href="download-rog-ally.html" class="button">Download</a>
     </div>
 
     <div class="card">
         <h2>Nexus Client</h2>
-        <p>This modpack offers an enhanced, optimized, and immersive Vanilla Minecraft experience!</p>
+        <p>An enhanced optimized Vanilla Minecraft experience.</p>
         <a href="download-nexus-client.html" class="button">Download</a>
     </div>
 
     <div class="card">
-        <h2>Eternal Trail a Soulslike</h2>
-        <p>My first soulslike RPG Modpack that brings many overhauls and a new difficulty system!</p>
+        <h2>Eternal Trail – Soulslike RPG</h2>
+        <p>A full RPG modpack overhaul with difficulty progression.</p>
         <a href="download-ets.html" class="button">Download</a>
     </div>
 
     <div class="card">
-        <h2>Project M.Nation Zombie Survival</h2>
-        <p>Project M.Nation is a zombie survival modpack for Minecraft 1.20.1, focused on immersion, performance, and intense gameplay!</p>
+        <h2>Project M.Nation – Zombie Survival</h2>
+        <p>Immersive zombie survival gameplay for Minecraft 1.20.1.</p>
         <a href="download-m-nation.html" class="button">Download</a>
     </div>
-    
-     <div class="card">
-        <h2>MRPG - Massive Role Play Game</h2>
-        <p>This Modpack is an Fantasy RPG Modpack with many news like Biomes Weapons Bosses Structures Leveling System and more!</p>
+
+    <div class="card">
+        <h2>MRPG – Massive Role Play Game</h2>
+        <p>A Fantasy RPG modpack with bosses, leveling, structures and more.</p>
         <a href="download-mrpg.html" class="button">Download</a>
     </div>
+
 </div>
 
 </body>
