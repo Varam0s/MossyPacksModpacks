@@ -1,186 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MossyPacks Modpacks Wiki</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>MossyPacks Wiki | Minecraft Modpack Setup & Guides</title>
+    <meta name="description" content="Official MossyPacks Wiki. Get the best Minecraft modpack setups, performance tips, and configurations for MossyPacks on Modrinth.">
+    <meta name="keywords" content="Minecraft, Modpack, MossyPacks, Modrinth, Gaming, Wiki, Setup Guide, Performance Tips, Fabric, Forge">
+    <meta name="author" content="Varamos">
 
-<style>
-/* ---------- RESET ---------- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <meta property="og:title" content="MossyPacks Modpack Wiki">
+    <meta property="og:description" content="Official hub for guides, configuration & downloads for all MossyPacks.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deine-domain.de"> <style>
+        /* ---------- RESET ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* ---------- VARIABLES ---------- */
-:root {
-    --bg: #0f1115;
-    --surface: rgba(255, 255, 255, 0.08);
-    --surface-strong: rgba(255, 255, 255, 0.12);
-    --text: #eaeaea;
-    --muted: #b3b3b3;
-    --accent: #66ccff;
-    --accent-strong: #4bb4e6;
-    --radius: 14px;
-}
+        /* ---------- VARIABLES ---------- */
+        :root {
+            --bg: #0f1115;
+            --surface: rgba(255, 255, 255, 0.08);
+            --surface-strong: rgba(255, 255, 255, 0.12);
+            --text: #eaeaea;
+            --muted: #b3b3b3;
+            --accent: #66ccff;
+            --accent-strong: #4bb4e6;
+            --radius: 14px;
+        }
 
-/* ---------- BODY ---------- */
-body {
-    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-    background: radial-gradient(circle at top, #1a1d24, #0f1115);
-    color: var(--text);
-    line-height: 1.7;
-    overflow-x: hidden;
-}
+        /* ---------- BODY ---------- */
+        body {
+            font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+            background: radial-gradient(circle at top, #1a1d24, #0f1115);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-/* ================================================= */
-/* ✅ MODERN NAVBAR                                 */
-/* ================================================= */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+        /* ---------- MODERN NAVBAR ---------- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 1.4rem;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
 
-    padding: 0.9rem 1.4rem;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
+        .nav-links {
+            display: flex;
+            gap: 1.3rem;
+        }
 
-.nav-logo {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--accent);
-    text-decoration: none;
-}
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
 
-.nav-links {
-    display: flex;
-    gap: 1.3rem;
-}
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-.nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.2s;
-}
+        .menu-toggle {
+            display: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
 
-.nav-links a:hover {
-    color: var(--accent);
-}
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                flex-direction: column;
+                background: rgba(0,0,0,0.9);
+                padding: 1rem;
+                border-radius: var(--radius);
+                width: 200px;
+                display: none;
+            }
+            .nav-links.show { display: flex; }
+        }
 
-.menu-toggle {
-    display: none;
-    font-size: 1.7rem;
-    cursor: pointer;
-}
+        /* ---------- HEADER ---------- */
+        header {
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+        }
 
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+        header h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
 
-    .nav-links {
-        position: absolute;
-        top: 65px;
-        right: 20px;
+        header p {
+            color: var(--muted);
+            margin-top: 0.6rem;
+            font-size: 1.05rem;
+        }
 
-        flex-direction: column;
-        background: rgba(0,0,0,0.9);
-        padding: 1rem;
-        border-radius: var(--radius);
-        width: 200px;
+        /* ---------- CONTENT ---------- */
+        #content {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            padding: 0 1rem;
+        }
 
-        display: none;
-    }
+        /* ---------- CARD ---------- */
+        .card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
 
-    .nav-links.show {
-        display: flex;
-    }
-}
+        .card:hover {
+            background: var(--surface-strong);
+            transform: translateY(-3px);
+        }
 
-/* ---------- HEADER ---------- */
-header {
-    padding: 3rem 1rem 2rem;
-    text-align: center;
-}
+        /* ---------- BUTTON ---------- */
+        .button-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #0f1115;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
 
-header h1 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-}
+        .button-link:hover {
+            background: var(--accent-strong);
+            transform: translateY(-2px);
+        }
 
-header p {
-    color: var(--muted);
-    margin-top: 0.6rem;
-    font-size: 1.05rem;
-}
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
 
-/* ---------- CONTENT ---------- */
-#content {
-    max-width: 900px;
-    margin: 2.5rem auto;
-    padding: 0 1rem;
-}
-
-/* ---------- CARD ---------- */
-.card {
-    background: var(--surface);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius);
-    padding: 2rem;
-    text-align: center;
-    backdrop-filter: blur(12px);
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.card:hover {
-    background: var(--surface-strong);
-    transform: translateY(-3px);
-}
-
-/* ---------- BUTTON ---------- */
-.button-link {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.7rem 1.3rem;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #0f1115;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.25s ease, transform 0.2s ease;
-}
-
-.button-link:hover {
-    background: var(--accent-strong);
-    transform: translateY(-2px);
-}
-</style>
-
-<script>
-function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-}
-</script>
-
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+        }
+    </script>
 </head>
 
 <body>
 
-<!-- ✅ MODERN NAVBAR -->
-<div class="navbar">
+<nav class="navbar">
     <a href="index.html" class="nav-logo">🌿 MossyPacks</a>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">☰</div>
     <div class="nav-links" id="navMenu">
         <a href="index.html" style="color: var(--accent);">Home</a>
         <a href="docs/setup.html">Setup</a>
@@ -188,31 +186,33 @@ function toggleMenu() {
         <a href="docs/performance-tips.html">Performance</a>
         <a href="docs/download.html">Download</a>
     </div>
-</div>
+</nav>
 
-<!-- HEADER -->
 <header>
     <h1>MossyPacks Modpack Wiki</h1>
-    <p>Your official hub for guides, configuration & downloads</p>
+    <p>Your official hub for <strong>Minecraft</strong> guides, configuration & downloads</p>
 </header>
 
-<!-- MAIN CONTENT -->
-<div id="content">
+<main id="content">
 
-    <div class="card">
-        <h2>Welcome 👋</h2>
+    <article class="card">
+        <h2>Welcome to the Official Wiki 👋</h2>
         <p>
-            This is the official Wiki for all MossyPacks Modpacks.<br>
-            Use the navigation above to access setup instructions,
-            configuration details, performance tips and download pages.
+            Explore the world of <strong>MossyPacks</strong>. This Wiki provides everything you need to know about our 
+            Minecraft Modpacks. From detailed <strong>setup instructions</strong> to 
+            <strong>performance optimization</strong> and configuration tweaks.
         </p>
 
-        <a href="https://modrinth.com/user/Varamos" target="_blank" class="button-link">
+        <a href="https://modrinth.com/user/Varamos" target="_blank" rel="noopener" class="button-link">
             Visit Modrinth Profile →
         </a>
-    </div>
+    </article>
 
-</div>
+</main>
+
+<footer>
+    &copy; 2026 MossyPacks - Created by Varamos
+</footer>
 
 </body>
 </html>
